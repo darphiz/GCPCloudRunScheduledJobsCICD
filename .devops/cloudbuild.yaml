@@ -6,13 +6,13 @@ steps:
 #   - '-c'
 #   - |
 #     echo "Authenticating Docker with Artifact Registry..."
-#     gcloud auth configure-docker $_REGION-docker.pkg.dev
+#     gcloud auth configure-docker ${_ARTIFACT_REGION}-docker.pkg.dev
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$_REGION-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:latest', '.']
+  args: ['build', '-t', '${_ARTIFACT_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:latest', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '$_REGION-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:latest']
+  args: ['push', '${_ARTIFACT_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:latest']
 
 images:
-- '$_REGION-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:latest'
+- '${_ARTIFACT_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:latest'
